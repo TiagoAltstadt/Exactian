@@ -4,7 +4,7 @@ import styles from "./HistoryPageStyles.module.scss";
 
 const formatTime = (hours) => {
   if (hours < 0) return "N/A";
-  
+
   const wholeHours = Math.floor(hours);
   const minutes = Math.round((hours - wholeHours) * 60);
 
@@ -64,14 +64,16 @@ const HistoryPage = () => {
 
   const filteredEmployees = employeesHistory
     .filter((emp) => emp.logs && emp.logs.length > 0)
-    .filter((emp) => 
+    .filter((emp) =>
       emp.employee_name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
   if (loading) {
-    return <div style={{ display: "flex", height: "80vh", width: "100%" }}>
+    return (
+      <div style={{ display: "flex", height: "80vh", width: "100%" }}>
         <img src="circle.png" style={{ margin: "auto" }} alt="" />
-      </div>;
+      </div>
+    );
   }
   if (error) {
     return <p>Error al cargar la lista de empleados.</p>;
@@ -81,8 +83,7 @@ const HistoryPage = () => {
     <>
       <div className={styles.container}>
         <h1 className={styles.title}>Historial de Ingresos y Egresos</h1>
-        
-        {/* Campo de búsqueda */}
+
         <input
           type="text"
           placeholder="Buscar por nombre..."
@@ -90,8 +91,7 @@ const HistoryPage = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
           className={styles.searchInput}
         />
-        
-        {/* Usa la lista filtrada para renderizar */}
+
         {filteredEmployees.length > 0 ? (
           <div className={styles.historyList}>
             {filteredEmployees.map((employeeRecord, index) => (

@@ -24,8 +24,8 @@ const apiService = {
   },
   getHistoryById: async (id) => {
     try {
-      const response = await axios.get(`${API_URL}/registros/history/${id}`);
-      
+      const response = await axios.get(`${API_URL}/logs/history/${id}`);
+
       return response.data;
     } catch (error) {
       console.error("Error fetching employees within:", error);
@@ -35,7 +35,7 @@ const apiService = {
 
   logCheckIn: async (empleadoId, fecha) => {
     try {
-      const response = await axios.post(`${API_URL}/registros`, {
+      const response = await axios.post(`${API_URL}/logs`, {
         employee_ID: empleadoId,
         entry: fecha,
       });
@@ -48,7 +48,7 @@ const apiService = {
 
   logCheckOut: async (empleadoId, fecha) => {
     try {
-      const response = await axios.patch(`${API_URL}/registros/${empleadoId}`, {
+      const response = await axios.patch(`${API_URL}/logs/${empleadoId}`, {
         exit: fecha,
       });
       return response.data;

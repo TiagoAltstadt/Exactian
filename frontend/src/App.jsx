@@ -11,13 +11,15 @@ function App() {
   return (
     <>
       <Router>
-      <Header />
+        <Header />
         <Routes>
           <Route path="/" element={<RegisterPage />} />
           <Route path="/logged-in" element={<EmployeesWorkingPage />} />
           <Route path="/history" element={<HistoryPage />} />
         </Routes>
-        <div className="disclaimer">Programado por <a href="www.tiagoaltstadt.com">Tiago Altstadt</a></div>
+        <div className="disclaimer">
+          Programado por <a target="_blank" href="https://www.tiagoaltstadt.com">Tiago Altstadt</a>
+        </div>
       </Router>
     </>
   );

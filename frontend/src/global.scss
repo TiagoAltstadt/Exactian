@@ -1,13 +1,12 @@
-// Global variables
 $color-primary: #f66125;
 $color-secondary: #2ff1ff;
 $background-color: #424242;
 $background-color-bis: #5f5f5f;
 $font-color: whitesmoke;
 $font-size-header: 24px;
-
 $border-radius: 8px;
 $border: 1px solid $color-primary;
+
 html {
   .disclaimer {
     color: rgb(179, 179, 179);
@@ -18,30 +17,28 @@ html {
   a {
     color: $color-primary;
   }
-}
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: $background-color;
+    font-family: "Open Sans", Helvetica, Arial, Lucida, sans-serif;
+    color: $font-color;
+    min-width: 1024px;
+    width: 100vw;
+    h1 {
+      font-size: 32px;
+    }
+    .border {
+      border-radius: $border-radius;
+      border: $border;
+    }
 
-// Global base styles
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: $background-color;
-  font-family: "Open Sans", Helvetica, Arial, Lucida, sans-serif;
-  color: $font-color;
-  min-width: 1024px;
-  width: 100vw;
-  h1 {
-    font-size: 32px;
+    .title {
+      font-size: 24px;
+    }
   }
 }
 
-.border {
-  border-radius: $border-radius;
-  border: $border;
-}
-
-.title {
-  font-size: 24px;
-}
 a {
   all: unset;
   cursor: pointer;

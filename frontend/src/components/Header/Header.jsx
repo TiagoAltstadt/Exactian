@@ -5,7 +5,7 @@ import styles from "./HeaderStyles.module.scss";
 const Header = () => {
   return (
     <nav className={styles.header}>
-      <a href="https://exactian.com/landing/">
+      <a href="https://exactian.com/landing/" target="_blank">
         <img src="logo.png" alt="" />
       </a>
 

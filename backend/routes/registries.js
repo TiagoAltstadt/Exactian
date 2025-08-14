@@ -8,10 +8,10 @@ router.get("/", async (req, res) => {
     const registries = await Registry.find().populate("employee_ID");
     res.json(registries);
   } catch (err) {
-    console.error("Error al obtener registros:", err);
     res.status(500).json({ msg: "Server error" });
   }
 });
+
 router.get("/history/:employee_ID", async (req, res) => {
   const { employee_ID } = req.params;
 
@@ -32,7 +32,6 @@ router.get("/history/:employee_ID", async (req, res) => {
         registries[0].employee_ID.surname,
       logs: registries.map((registry) => {
         const entryTime = new Date(registry.entry);
-
         const exitTime =
           registry.exit != null ? new Date(registry.exit) : new Date();
         const timeDifference = exitTime.getTime() - entryTime.getTime();
@@ -48,7 +47,6 @@ router.get("/history/:employee_ID", async (req, res) => {
 
     res.json(formattedHistory);
   } catch (err) {
-    console.error("Error al obtener registros:", err);
     res.status(500).json({ msg: "Server error" });
   }
 });
@@ -123,12 +121,11 @@ router.patch("/:employee_ID", async (req, res) => {
     let responseMsg = "Salida registrada correctamente";
     if (hours > 8) {
       responseMsg +=
-        ". Atención: Segun los datos, se registraron más de 8 horas de trabajo.";
+        ". Atención: Segun los datos, se registraron más de 8 horas de trabajo. Puede verificar en Historial";
     }
 
     res.status(200).json({ msg: responseMsg, registry: openRegistry, hours });
   } catch (err) {
-    console.error("Error al registrar salida:", err);
     res.status(500).json({ msg: "Server error" });
   }
 });

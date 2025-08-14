@@ -1,4 +1,4 @@
-@import "../../global.scss"; 
+@import "../../global.scss";
 
 .header {
   padding: 20px;
@@ -9,9 +9,8 @@
   align-items: center;
   height: 80px;
   background-color: $color-primary;
-  width: 100%;
   font-size: 32px;
-  a{
+  a {
     color: $font-color;
   }
   img {

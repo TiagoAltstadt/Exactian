@@ -14,7 +14,6 @@ router.get("/logged-in", async (req, res) => {
   try {
     const loggedInEmployees = await Employee.find({ state: true });
     console.log(loggedInEmployees);
-    
 
     if (loggedInEmployees.length === 0) {
       return res.json([]);

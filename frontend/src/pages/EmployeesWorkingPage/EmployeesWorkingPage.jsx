@@ -22,9 +22,11 @@ const EmployeesWorkingPage = () => {
   }, []);
 
   if (loading) {
-    return <div style={{ display: "flex", height: "80vh", width: "100%" }}>
+    return (
+      <div style={{ display: "flex", height: "80vh", width: "100%" }}>
         <img src="circle.png" style={{ margin: "auto" }} alt="" />
-      </div>;
+      </div>
+    );
   }
 
   if (error) {
