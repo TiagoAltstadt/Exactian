@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const API_URL = "/api";
+// const API_URL = "/api"; Uncomment this and comment the line below to test on local
+const API_URL = "http://192.168.0.104:5000/api";
 
 const apiService = {
   getEmployees: async () => {
