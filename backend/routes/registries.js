@@ -9,6 +9,7 @@ router.get('/', async (req, res) => {
     const registries = await Registry.find().populate('employee_ID');
     res.json(registries);
   } catch (err) {
+    console.error('Error al obtener registros:', err);
     res.status(500).json({ msg: 'Server error' });
   }
 });
@@ -19,6 +20,9 @@ router.post('/', async (req, res) => {
   
   try {
     const employee = await Employee.findById(employee_ID);
+    if (!employee) {
+      return res.status(404).json({ msg: 'Empleado no encontrado.' });
+    }
     
     // Validación 1: Verificar si ya hay un registro abierto
     const openRegistry = await Registry.findOne({ employee_ID, exit: null });
@@ -42,6 +46,7 @@ router.post('/', async (req, res) => {
     res.status(201).json({ msg: 'Entrada registrada correctamente', newRegistry });
 
   } catch (err) {
+    console.error('Error al registrar entrada:', err);
     res.status(500).json({ msg: 'Server error' });
   }
 });
@@ -52,8 +57,9 @@ router.patch('/:employee_ID', async (req, res) => {
   const { exit } = req.body;
   try {
     const employee = await Employee.findById(employee_ID);
-    console.log(employee);
-    
+    if (!employee) {
+      return res.status(404).json({ msg: 'Empleado no encontrado.' });
+    }
     
     // Validación 2: El empleado no puede egresar si no tiene un registro abierto
     const openRegistry = await Registry.findOne({ employee_ID, exit: null }).sort({ entry: -1 });
@@ -73,7 +79,6 @@ router.patch('/:employee_ID', async (req, res) => {
     
     // Actualizar el estado del empleado
     employee.state = false;
-    console.log('flag');
     await employee.save();
     
     let responseMsg = 'Salida registrada correctamente';
@@ -84,6 +89,7 @@ router.patch('/:employee_ID', async (req, res) => {
     res.status(200).json({ msg: responseMsg, registry: openRegistry, hours });
 
   } catch (err) {
+    console.error('Error al registrar salida:', err);
     res.status(500).json({ msg: 'Server error' });
   }
 });

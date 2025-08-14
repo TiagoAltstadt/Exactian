@@ -52,7 +52,7 @@ const RegisterFormPage = ({ employees }) => {
             <option value="">-- Seleccione un empleado --</option>
             {employees.map((emp) => (
               <option key={emp._id} value={emp._id}>
-                {emp.nombre} {emp.apellido}
+                {emp.name} {emp.surname}
               </option>
             ))}
           </select>
