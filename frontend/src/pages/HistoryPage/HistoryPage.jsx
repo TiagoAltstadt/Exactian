@@ -9,11 +9,10 @@ const RegisterFormPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch employees on mount
   useEffect(() => {
     const fetchEmployees = async () => {
       try {
-        const data = await apiService.getEmpleados();
+        const data = await apiService.getEmployees();
         setEmployees(data);
       } catch (err) {
         setError(err);
@@ -22,7 +21,6 @@ const RegisterFormPage = () => {
     fetchEmployees();
   }, []);
 
-  // Fetch history when employees are loaded
   useEffect(() => {
     const fetchAllHistories = async () => {
       setLoading(true);
@@ -30,17 +28,10 @@ const RegisterFormPage = () => {
         const histories = await Promise.all(
           employees.map((employee) => apiService.getHistoryById(employee._id))
         );
-        // Flatten and add employee name to each record
-        const allRecords = histories.flat().map((record, idx) => ({
-          ...record,
-          name: employees[idx]?.name || record.name,
-        }));
-        console.log(allRecords);
+        console.log(histories);
 
-        setEmployeesHistory(allRecords);
+        setEmployeesHistory(histories);
       } catch (err) {
-        console.log(err);
-
         setError(err);
       } finally {
         setLoading(false);
@@ -64,27 +55,44 @@ const RegisterFormPage = () => {
       <Header />
       <div className={styles.container}>
         <h1 className={styles.title}>Historial de Ingresos y Egresos</h1>
-        {employeesHistory.length > 0 ? (
-          <table className={styles.table}>
-            <thead>
-              <tr>
-                <th>Nombre</th>
-                <th>Fecha y Hora</th>
-                <th>Tipo</th>
-              </tr>
-            </thead>
-            <tbody>
-              {employeesHistory.map((record, index) => (
-                <tr key={index}>
-                  <td>{record.nombre}</td>
-                  <td>{new Date(record.timestamp).toLocaleString()}</td>
-                  <td>{record.tipo}</td>
-                </tr>
+        {/* Filtra y luego mapea solo los empleados con registros */}
+        {employeesHistory.filter((emp) => emp.logs && emp.logs.length > 0)
+          .length > 0 ? (
+          <div className={styles.historyList}>
+            {employeesHistory
+              .filter((emp) => emp.logs && emp.logs.length > 0)
+              .map((employeeRecord, index) => (
+                <div key={index} className={styles.employeeCard}>
+                  <h2 className={styles.employeeName}>
+                    {employeeRecord.employee_name}
+                  </h2>
+                  <table className={styles.table}>
+                    <thead>
+                      <tr>
+                        <th>Entrada</th>
+                        <th>Salida</th>
+                        <th>Duracion</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {employeeRecord.logs.map((log, logIndex) => (
+                        <tr key={logIndex}>
+                          <td>{new Date(log.entry).toLocaleString()}</td>
+                          <td>
+                            {log.exit
+                              ? new Date(log.exit).toLocaleString()
+                              : "En curso"}
+                          </td>
+                          <td>{log.shift_total_time}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               ))}
-            </tbody>
-          </table>
+          </div>
         ) : (
-          <p>No hay registros en el historial.</p>
+          <p className={styles.noRecords}>No hay registros en el historial.</p>
         )}
       </div>
     </>

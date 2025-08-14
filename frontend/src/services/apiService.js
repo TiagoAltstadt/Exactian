@@ -3,7 +3,7 @@ import axios from "axios";
 const API_URL = "/api";
 
 const apiService = {
-  getEmpleados: async () => {
+  getEmployees: async () => {
     try {
       const response = await axios.get(`${API_URL}/empleados`);
       return response.data;
@@ -13,7 +13,7 @@ const apiService = {
     }
   },
 
-  getEmpleadosDentro: async () => {
+  getWorkingEmployees: async () => {
     try {
       const response = await axios.get(`${API_URL}/empleados/dentro`);
       return response.data;
@@ -24,7 +24,8 @@ const apiService = {
   },
   getHistoryById: async (id) => {
     try {
-      const response = await axios.get(`${API_URL}/registros/${id}`);
+      const response = await axios.get(`${API_URL}/registros/history/${id}`);
+      
       return response.data;
     } catch (error) {
       console.error("Error fetching employees within:", error);
@@ -32,7 +33,7 @@ const apiService = {
     }
   },
 
-  registrarIngreso: async (empleadoId, fecha) => {
+  logCheckIn: async (empleadoId, fecha) => {
     try {
       const response = await axios.post(`${API_URL}/registros`, {
         employee_ID: empleadoId,
@@ -45,7 +46,7 @@ const apiService = {
     }
   },
 
-  registrarEgreso: async (empleadoId, fecha) => {
+  logCheckOut: async (empleadoId, fecha) => {
     try {
       const response = await axios.patch(`${API_URL}/registros/${empleadoId}`, {
         exit: fecha,

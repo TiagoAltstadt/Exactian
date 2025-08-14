@@ -11,7 +11,7 @@ const EmployeesWorkingPage = () => {
   useEffect(() => {
     const fetchEmployeesWithin = async () => {
       try {
-        const data = await apiService.getEmpleadosDentro();
+        const data = await apiService.getWorkingEmployees();
         setEmployeesWithin(data);
       } catch (err) {
         setError(err);

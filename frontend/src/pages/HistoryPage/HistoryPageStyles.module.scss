@@ -1,1 +1,71 @@
 @import "../../global.scss"; 
+
+@import '../../global.scss';
+
+.container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.title {
+  color: $font-color;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+}
+
+.historyList {
+  display: grid;
+  gap: 2rem;
+}
+
+.employeeCard {
+  background-color: $background-color-bis;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  border: $border;
+}
+
+.employeeName {
+  color: $font-color;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  border-bottom: $border;
+  padding-bottom: 1rem;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+
+  thead {
+    background-color: $color-primary;
+    color: white;
+  }
+
+  th {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    color: black;
+  }
+
+  tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  tbody tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+  }
+}

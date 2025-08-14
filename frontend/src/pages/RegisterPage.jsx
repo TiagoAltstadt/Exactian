@@ -12,7 +12,7 @@ const RegisterPage = () => {
   useEffect(() => {
     const fetchEmployees = async () => {
       try {
-        const data = await apiService.getEmpleados();
+        const data = await apiService.getEmployees();
         setEmployees(data);
       } catch (err) {
         setError(err);

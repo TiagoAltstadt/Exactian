@@ -19,13 +19,13 @@ const RegisterFormPage = ({ employees }) => {
     e.preventDefault();
     try {
       if (formData.tipo === "ingreso") {
-        const response = await apiService.registrarIngreso(
+        const response = await apiService.logCheckIn(
           formData.employee_ID,
           formData.fecha
         );
         setMessage(response.msg);
       } else {
-        const response = await apiService.registrarEgreso(
+        const response = await apiService.logCheckOut(
           formData.employee_ID,
           formData.fecha
         );

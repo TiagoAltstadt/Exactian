@@ -3,7 +3,6 @@ const router = express.Router();
 const Employee = require("../models/Employee");
 const Registry = require("../models/Registry");
 
-// Endpoint para obtener todos los registros
 router.get("/", async (req, res) => {
   try {
     const registries = await Registry.find().populate("employee_ID");
@@ -13,27 +12,47 @@ router.get("/", async (req, res) => {
     res.status(500).json({ msg: "Server error" });
   }
 });
-// Endpoint para obtener todos los registros por ID
-router.get("/:employee_ID", async (req, res) => {
+router.get("/history/:employee_ID", async (req, res) => {
   const { employee_ID } = req.params;
 
   try {
     const registries = await Registry.find({
       employee_ID: employee_ID,
     }).populate("employee_ID");
+
     if (registries.length === 0) {
-      return res
-        .status(200)
-        .json([]);
+      return res.status(200).json({ employee_id: employee_ID, logs: [] });
     }
-    res.json(registries);
+
+    const formattedHistory = {
+      employee_id: registries[0].employee_ID._id,
+      employee_name:
+        registries[0].employee_ID.name +
+        " " +
+        registries[0].employee_ID.surname,
+      logs: registries.map((registry) => {
+        const entryTime = new Date(registry.entry);
+
+        const exitTime =
+          registry.exit != null ? new Date(registry.exit) : new Date();
+        const timeDifference = exitTime.getTime() - entryTime.getTime();
+        const hours = timeDifference / (1000 * 60 * 60);
+
+        return {
+          entry: registry.entry,
+          exit: registry.exit,
+          shift_total_time: hours > 0 ? hours : 0,
+        };
+      }),
+    };
+
+    res.json(formattedHistory);
   } catch (err) {
     console.error("Error al obtener registros:", err);
     res.status(500).json({ msg: "Server error" });
   }
 });
 
-// Endpoint para registrar un nuevo ingreso
 router.post("/", async (req, res) => {
   const { employee_ID, entry } = req.body;
 
@@ -72,8 +91,6 @@ router.post("/", async (req, res) => {
     res.status(500).json({ msg: "Server error" });
   }
 });
-
-// Endpoint para registrar un egreso
 router.patch("/:employee_ID", async (req, res) => {
   const { employee_ID } = req.params;
   const { exit } = req.body;
