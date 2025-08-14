@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import apiService from "../../services/apiService";
 import styles from "./HistoryPageStyles.module.scss";
-import Header from "../../components/Header";
-
 const RegisterFormPage = () => {
   const [employees, setEmployees] = useState([]);
   const [employeesHistory, setEmployeesHistory] = useState([]);
@@ -45,14 +43,15 @@ const RegisterFormPage = () => {
   }, [employees]);
 
   if (loading) {
-    return <p>Cargando empleados...</p>;
+    return <div style={{ display: "flex", height: "80vh", width: "100%" }}>
+        <img src="circle.png" style={{ margin: "auto" }} alt="" />
+      </div>;
   }
   if (error) {
     return <p>Error al cargar la lista de empleados.</p>;
   }
   return (
     <>
-      <Header />
       <div className={styles.container}>
         <h1 className={styles.title}>Historial de Ingresos y Egresos</h1>
         {/* Filtra y luego mapea solo los empleados con registros */}

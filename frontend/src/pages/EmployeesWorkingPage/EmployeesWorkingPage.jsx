@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Header from "../components/Header";
-import EmployeesTable from "../components/EmployeesTable";
-import apiService from "../services/apiService";
+import EmployeesTable from "../../components/EmployeesTable/EmployeesTable";
+import apiService from "../../services/apiService";
 
 const EmployeesWorkingPage = () => {
   const [employeesWithin, setEmployeesWithin] = useState([]);
@@ -23,7 +22,9 @@ const EmployeesWorkingPage = () => {
   }, []);
 
   if (loading) {
-    return <p>Cargando empleados...</p>;
+    return <div style={{ display: "flex", height: "80vh", width: "100%" }}>
+        <img src="circle.png" style={{ margin: "auto" }} alt="" />
+      </div>;
   }
 
   if (error) {
@@ -32,7 +33,6 @@ const EmployeesWorkingPage = () => {
 
   return (
     <div>
-      <Header />
       <div style={{ padding: "20px" }}>
         <h1>Empleados Dentro de la Compañía</h1>
         {employeesWithin.length > 0 ? (

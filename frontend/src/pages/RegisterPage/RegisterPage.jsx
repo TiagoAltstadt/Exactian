@@ -1,8 +1,7 @@
 // src/pages/RegisterPage.jsx
 import React, { useState, useEffect } from "react";
-import Header from "../components/Header";
-import RegisterFormPage from "../pages/RegisterFormPage/RegisterFormPage";
-import apiService from "../services/apiService";
+import RegisterFormPage from "../RegisterFormPage/RegisterFormPage";
+import apiService from "../../services/apiService";
 
 const RegisterPage = () => {
   const [employees, setEmployees] = useState([]);
@@ -24,7 +23,11 @@ const RegisterPage = () => {
   }, []);
 
   if (loading) {
-    return <p>Cargando empleados...</p>;
+    return (
+      <div style={{ display: "flex", height: "80vh", width: "100%" }}>
+        <img src="circle.png" style={{ margin: "auto" }} alt="" />
+      </div>
+    );
   }
 
   if (error) {
@@ -33,7 +36,6 @@ const RegisterPage = () => {
 
   return (
     <div>
-      <Header />
       <div style={{ padding: "20px" }}>
         <h1>Registro de Ingresos y Egresos</h1>
         <RegisterFormPage employees={employees} />

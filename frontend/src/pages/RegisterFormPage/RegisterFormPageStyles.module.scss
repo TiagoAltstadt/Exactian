@@ -1,4 +1,4 @@
-@import "../../global.scss"; 
+@import "../../global.scss";
 
 .formContainer {
   max-width: 500px;
@@ -21,7 +21,7 @@
 .inputGroup {
   display: flex;
   flex-direction: column;
-
+  margin-bottom: 12px;
   label {
     margin-bottom: 0.5rem;
     font-weight: 600;
@@ -65,5 +65,5 @@
   text-align: center;
   margin-top: 1rem;
   font-weight: 600;
-  color: #28a745;
+  color: $color-primary;
 }
