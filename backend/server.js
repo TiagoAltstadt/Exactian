@@ -5,7 +5,7 @@ const dotenv = require("dotenv");
 const employeesRoutes = require("./routes/employees");
 const registriesRoutes = require("./routes/registries");
 
-dotenv.config();
+dotenv.config({path: '../.env' });
 
 const app = express();
 
