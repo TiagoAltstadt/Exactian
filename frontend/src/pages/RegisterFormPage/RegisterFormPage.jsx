@@ -38,7 +38,7 @@ const RegisterFormPage = ({ employees }) => {
 
   return (
     <div className={styles.formContainer}>
-      <h2 className={styles.title}>Registro de Ingresos y Egresos</h2>
+      <h2 className={styles.title}>Ingresos y Egresos</h2>
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.inputGroup}>
           <label htmlFor="employee_ID">Empleado:</label>
@@ -49,7 +49,7 @@ const RegisterFormPage = ({ employees }) => {
             onChange={handleChange}
             required
           >
-            <option value="">-- Seleccione un empleado --</option>
+            <option value="">Seleccione un empleado</option>
             {employees.map((emp) => (
               <option key={emp._id} value={emp._id}>
                 {emp.name} {emp.surname}
@@ -58,7 +58,7 @@ const RegisterFormPage = ({ employees }) => {
           </select>
         </div>
         <div className={styles.inputGroup}>
-          <label htmlFor="tipo">Tipo de Acción:</label>
+          <label htmlFor="tipo">Tipo de acción:</label>
           <select
             id="tipo"
             name="tipo"

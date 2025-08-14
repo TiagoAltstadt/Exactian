@@ -6,7 +6,7 @@
 - name: String
 - surname: String
 - dni: Number
-- state: Boolean ('dentro': true, 'fuera': false)
+- state: Boolean ('logged-in': true, 'fuera': false)
 - last_entry: Date 
 
 ### Registro
@@ -37,7 +37,7 @@ Crea un nuevo registro de entry y actualiza el estado del empleado.
 
 400:
 {
-  "msg": "El empleado ya se encuentra dentro de la compañía."
+  "msg": "El empleado ya se encuentra logged-in de la compañía."
 }
 
 ### PATCH /registros/:id
@@ -64,7 +64,7 @@ Actualiza un registro de entry con la hora de exit y actualiza el estado del emp
   "msg": "El empleado no se encuentra en la compañía."
 }
 
-### GET /empleados/dentro
+### GET /empleados/logged-in
 Devuelve un arreglo de todos los empleados cuyo estado es true
 
 200:

@@ -1,4 +1,4 @@
-@import "../../global.scss"; // Import global variables
+@import "../../global.scss"; 
 
 .header {
   padding: 20px;
@@ -11,6 +11,9 @@
   background-color: $color-primary;
   width: 100%;
   font-size: 32px;
+  a{
+    color: $font-color;
+  }
   img {
     width: 200px;
     background-color: rgb(255, 255, 255);

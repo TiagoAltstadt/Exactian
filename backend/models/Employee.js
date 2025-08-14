@@ -22,6 +22,10 @@ const EmployeeSchema = new mongoose.Schema({
     type: Date,
     default: null,
   },
+  last_entry: {
+    type: Date,
+    default: null,
+  },
 });
 
 module.exports = mongoose.model('Employee', EmployeeSchema);

@@ -34,11 +34,11 @@ const EmployeesWorkingPage = () => {
   return (
     <div>
       <div style={{ padding: "20px" }}>
-        <h1>Empleados Dentro de la Compañía</h1>
+        <h1>Personal Activo</h1>
         {employeesWithin.length > 0 ? (
           <EmployeesTable employees={employeesWithin} />
         ) : (
-          <p>No hay empleados dentro en este momento.</p>
+          <p>No hay empleados trabajando en este momento.</p>
         )}
       </div>
     </div>

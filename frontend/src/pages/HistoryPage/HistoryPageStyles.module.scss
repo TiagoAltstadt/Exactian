@@ -1,6 +1,4 @@
-@import "../../global.scss"; 
-
-@import '../../global.scss';
+@import "../../global.scss";
 
 .container {
   max-width: 900px;
@@ -13,6 +11,25 @@
   text-align: center;
   margin-bottom: 2rem;
   font-size: 2.5rem;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 2rem;
+  border: $border;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: all 0.3s ease-in-out;
+  color: $color-primary;
+  background-color: whitesmoke;
+
+  &:focus {
+    border-color: $color-primary;
+    box-shadow: 0 0 5px rgba($color-primary, 0.5);
+    outline: none;
+  }
 }
 
 .historyList {
@@ -39,7 +56,7 @@
 .table {
   width: 100%;
   border-collapse: collapse;
-  background-color: #fff;
+  background-color: white;
   border-radius: 8px;
   overflow: hidden;
 
@@ -51,12 +68,12 @@
   th {
     padding: 12px 15px;
     text-align: left;
-    border-bottom: 1px solid #ddd;
+    border-bottom: $border;
   }
   td {
     padding: 12px 15px;
     text-align: left;
-    border-bottom: 1px solid #ddd;
+    border-bottom: $border;
     color: black;
   }
 
@@ -68,4 +85,11 @@
     background-color: #f1f1f1;
     cursor: pointer;
   }
+}
+
+.noRecords {
+  color: $font-color;
+  text-align: center;
+  font-style: italic;
+  margin-top: 1rem;
 }

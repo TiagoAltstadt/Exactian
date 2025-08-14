@@ -15,7 +15,7 @@ const apiService = {
 
   getWorkingEmployees: async () => {
     try {
-      const response = await axios.get(`${API_URL}/empleados/dentro`);
+      const response = await axios.get(`${API_URL}/empleados/logged-in`);
       return response.data;
     } catch (error) {
       console.error("Error fetching employees within:", error);

@@ -1,4 +1,3 @@
-// src/pages/RegisterPage.jsx
 import React, { useState, useEffect } from "react";
 import RegisterFormPage from "../RegisterFormPage/RegisterFormPage";
 import apiService from "../../services/apiService";
@@ -37,7 +36,7 @@ const RegisterPage = () => {
   return (
     <div>
       <div style={{ padding: "20px" }}>
-        <h1>Registro de Ingresos y Egresos</h1>
+        <h1>Registrar Movimientos</h1>
         <RegisterFormPage employees={employees} />
       </div>
     </div>

@@ -11,10 +11,10 @@ const Header = () => {
 
       <div className={styles.options}>
         <div className={styles.item}>
-          <Link to="/">Registrar Movimiento</Link>
+          <Link to="/">Registrar Movimientos</Link>
         </div>
         <div className={styles.item}>
-          <Link to="/dentro">Empleados Trabajando</Link>
+          <Link to="/logged-in">Personal Activo</Link>
         </div>
         <div className={styles.item}>
           <Link to="/history">Historial</Link>

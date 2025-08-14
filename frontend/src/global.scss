@@ -8,6 +8,17 @@ $font-size-header: 24px;
 
 $border-radius: 8px;
 $border: 1px solid $color-primary;
+html {
+  .disclaimer {
+    color: rgb(179, 179, 179);
+    position: fixed;
+    bottom: 0;
+    left: calc(50% - 110px);
+  }
+  a {
+    color: $color-primary;
+  }
+}
 
 // Global base styles
 body {
@@ -18,6 +29,9 @@ body {
   color: $font-color;
   min-width: 1024px;
   width: 100vw;
+  h1 {
+    font-size: 32px;
+  }
 }
 
 .border {

@@ -62,7 +62,6 @@ router.post("/", async (req, res) => {
       return res.status(404).json({ msg: "Empleado no encontrado." });
     }
 
-    // Validación 1: Verificar si ya hay un registro abierto
     const openRegistry = await Registry.findOne({ employee_ID, exit: null });
     if (openRegistry) {
       return res
@@ -70,7 +69,6 @@ router.post("/", async (req, res) => {
         .json({ msg: "El empleado ya tiene un registro de ingreso activo." });
     }
 
-    // Si no hay un registro abierto, se crea uno nuevo
     const newRegistry = new Registry({
       employee_ID,
       entry,
@@ -78,9 +76,10 @@ router.post("/", async (req, res) => {
 
     await newRegistry.save();
 
-    // Actualizar el estado del empleado
     employee.state = true;
     employee.last_exit = null;
+    employee.last_entry = new Date(entry);
+
     await employee.save();
 
     res
@@ -100,7 +99,6 @@ router.patch("/:employee_ID", async (req, res) => {
       return res.status(404).json({ msg: "Empleado no encontrado." });
     }
 
-    // Validación 2: El empleado no puede egresar si no tiene un registro abierto
     const openRegistry = await Registry.findOne({
       employee_ID,
       exit: null,
@@ -111,17 +109,14 @@ router.patch("/:employee_ID", async (req, res) => {
         .json({ msg: "El empleado no tiene un registro de ingreso activo." });
     }
 
-    // Actualizar el registro abierto con la hora de salida
     openRegistry.exit = exit;
     await openRegistry.save();
 
-    // Calcular el tiempo transcurrido
     const entryTime = new Date(openRegistry.entry);
     const exitTime = new Date(exit);
     const timeDifference = exitTime.getTime() - entryTime.getTime();
     const hours = timeDifference / (1000 * 60 * 60);
 
-    // Actualizar el estado del empleado
     employee.state = false;
     await employee.save();
 

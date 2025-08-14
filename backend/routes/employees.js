@@ -10,10 +10,17 @@ router.get("/", async (req, res) => {
     res.status(500).json({ msg: "Server error" });
   }
 });
-router.get("/dentro", async (req, res) => {
+router.get("/logged-in", async (req, res) => {
   try {
-    const employees = await Employee.find({ state: true });
-    res.json(employees);
+    const loggedInEmployees = await Employee.find({ state: true });
+    console.log(loggedInEmployees);
+    
+
+    if (loggedInEmployees.length === 0) {
+      return res.json([]);
+    }
+
+    res.json(loggedInEmployees);
   } catch (err) {
     res.status(500).json({ msg: "Server error" });
   }

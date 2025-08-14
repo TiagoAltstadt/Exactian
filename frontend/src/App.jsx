@@ -14,9 +14,10 @@ function App() {
       <Header />
         <Routes>
           <Route path="/" element={<RegisterPage />} />
-          <Route path="/dentro" element={<EmployeesWorkingPage />} />
+          <Route path="/logged-in" element={<EmployeesWorkingPage />} />
           <Route path="/history" element={<HistoryPage />} />
         </Routes>
+        <div className="disclaimer">Programado por <a href="www.tiagoaltstadt.com">Tiago Altstadt</a></div>
       </Router>
     </>
   );
