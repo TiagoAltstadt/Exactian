@@ -1,6 +1,6 @@
-import axios from 'axios';
+import axios from "axios";
 
-const API_URL = '/api';
+const API_URL = "/api";
 
 const apiService = {
   getEmpleados: async () => {
@@ -8,7 +8,7 @@ const apiService = {
       const response = await axios.get(`${API_URL}/empleados`);
       return response.data;
     } catch (error) {
-      console.error('Error fetching employees:', error);
+      console.error("Error fetching employees:", error);
       throw error;
     }
   },
@@ -18,7 +18,16 @@ const apiService = {
       const response = await axios.get(`${API_URL}/empleados/dentro`);
       return response.data;
     } catch (error) {
-      console.error('Error fetching employees within:', error);
+      console.error("Error fetching employees within:", error);
+      throw error;
+    }
+  },
+  getHistoryById: async (id) => {
+    try {
+      const response = await axios.get(`${API_URL}/registros/${id}`);
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching employees within:", error);
       throw error;
     }
   },
@@ -31,7 +40,7 @@ const apiService = {
       });
       return response.data;
     } catch (error) {
-      console.error('Error registering entry:', error);
+      console.error("Error registering entry:", error);
       throw error;
     }
   },
@@ -43,7 +52,7 @@ const apiService = {
       });
       return response.data;
     } catch (error) {
-      console.error('Error registering exit:', error);
+      console.error("Error registering exit:", error);
       throw error;
     }
   },

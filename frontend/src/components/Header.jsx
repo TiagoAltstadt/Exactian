@@ -11,6 +11,9 @@ const Header = () => {
       <div className={styles.item}>
         <Link to="/dentro">Empleados Trabajando</Link>
       </div>
+      <div className={styles.item}>
+        <Link to="/history">Historial</Link>
+      </div>
     </nav>
   );
 };

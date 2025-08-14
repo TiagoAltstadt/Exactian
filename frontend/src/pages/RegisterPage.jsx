@@ -1,7 +1,7 @@
 // src/pages/RegisterPage.jsx
 import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
-import RegisterFormPage from "../pages/RegisterFormPage";
+import RegisterFormPage from "../pages/RegisterFormPage/RegisterFormPage";
 import apiService from "../services/apiService";
 
 const RegisterPage = () => {
